@@ -1,0 +1,22 @@
+{
+  "version": 1,
+  "model": "Xenova/all-MiniLM-L6-v2",
+  "dimensions": 384,
+  "status": "complete",
+  "totalFiles": 2,
+  "indexedFiles": 2,
+  "totalChunks": 2,
+  "batchCount": 1,
+  "files": {
+    "guide/index.md": {
+      "mtime": 1784109143097.4365,
+      "size": 53,
+      "batches": []
+    },
+    "index.md": {
+      "mtime": 1784109135376.6245,
+      "size": 63,
+      "batches": []
+    }
+  }
+}

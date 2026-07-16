@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://mgks.github.io/gh-sub-parent/sitemap.xml

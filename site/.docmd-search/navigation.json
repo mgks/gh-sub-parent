@@ -1,0 +1,18 @@
+{
+  "tree": [
+    {
+      "title": "Guide",
+      "path": "guide",
+      "children": [
+        {
+          "title": "Guide",
+          "path": "guide/index.md"
+        }
+      ]
+    },
+    {
+      "title": "Home",
+      "path": "index.md"
+    }
+  ]
+}

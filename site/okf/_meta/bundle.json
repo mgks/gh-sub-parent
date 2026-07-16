@@ -1,0 +1,42 @@
+{
+  "okf_version": "0.8.16",
+  "bundle": {
+    "name": "my-site-docs",
+    "title": "My Site Docs",
+    "description": "",
+    "url": "https://mgks.github.io/gh-sub-parent",
+    "generated_by": "@docmd/plugin-okf",
+    "generated_at": "2026-07-16T12:31:26.102Z",
+    "default_type": "concept"
+  },
+  "stats": {
+    "concepts": 2,
+    "by_type": {
+      "concept": 2
+    },
+    "locales": [],
+    "versions": []
+  },
+  "concepts": [
+    {
+      "id": "guide",
+      "type": "concept",
+      "title": "Guide",
+      "path": "/guide/",
+      "file": "concepts/guide.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    },
+    {
+      "id": "root",
+      "type": "concept",
+      "title": "Home",
+      "path": "/",
+      "file": "concepts/root.md",
+      "locale": "",
+      "version": "",
+      "tags": []
+    }
+  ]
+}

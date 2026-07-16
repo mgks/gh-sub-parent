@@ -1,0 +1,18 @@
+{
+  "title": "My Site Docs",
+  "description": "",
+  "pages": [
+    {
+      "title": "Guide",
+      "url": "https://mgks.github.io/gh-sub-parent/guide/",
+      "description": "",
+      "priority": "medium"
+    },
+    {
+      "title": "Home",
+      "url": "https://mgks.github.io/gh-sub-parent/",
+      "description": "",
+      "priority": "high"
+    }
+  ]
+}
