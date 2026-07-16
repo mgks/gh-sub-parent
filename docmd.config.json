@@ -60,7 +60,8 @@
       "defaultDescription": "My Site documentation."
     },
     "search": {
-      "semantic": true
+      "semantic": true,
+      "showConfidence": true
     }
   }
 }

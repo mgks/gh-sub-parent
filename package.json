@@ -11,7 +11,6 @@
     "@docmd/api": "file:local-tars/docmd-api-0.8.16.tgz",
     "@docmd/core": "file:local-tars/docmd-core-0.8.16.tgz",
     "@docmd/deployer": "file:local-tars/docmd-deployer-0.8.16.tgz",
-    "@docmd/engine-js": "^0.8.15",
     "@docmd/live": "file:local-tars/docmd-live-0.8.16.tgz",
     "@docmd/parser": "file:local-tars/docmd-parser-0.8.16.tgz",
     "@docmd/plugin-analytics": "file:local-tars/docmd-plugin-analytics-0.8.16.tgz",
@@ -27,13 +26,9 @@
     "@docmd/plugin-seo": "file:local-tars/docmd-plugin-seo-0.8.16.tgz",
     "@docmd/plugin-sitemap": "file:local-tars/docmd-plugin-sitemap-0.8.16.tgz",
     "@docmd/plugin-threads": "file:local-tars/docmd-plugin-threads-0.8.16.tgz",
-    "@docmd/template-summer": "^0.8.15",
     "@docmd/themes": "file:local-tars/docmd-themes-0.8.16.tgz",
     "@docmd/tui": "file:local-tars/docmd-tui-0.8.16.tgz",
     "@docmd/ui": "file:local-tars/docmd-ui-0.8.16.tgz",
-    "@docmd/utils": "file:local-tars/docmd-utils-0.8.16.tgz",
-    "@huggingface/transformers": "^4.2.0",
-    "docmd-search": "^0.1.1",
-    "onnxruntime-node": "^1.27.0"
+    "@docmd/utils": "file:local-tars/docmd-utils-0.8.16.tgz"
   }
 }
