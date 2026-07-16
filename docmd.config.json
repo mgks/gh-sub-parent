@@ -1,6 +1,66 @@
 {
-  "title": "GH Pages Subpath Test",
+  "title": "My Site Docs",
   "url": "https://mgks.github.io/gh-sub-parent",
-  "src": "./docs",
-  "out": "./site"
+  "src": "docs",
+  "out": "site",
+  "engine": "js",
+  "layout": {
+    "spa": true,
+    "breadcrumbs": true,
+    "header": {
+      "enabled": true
+    },
+    "menubar": {
+      "enabled": false,
+      "position": "top"
+    },
+    "sidebar": {
+      "collapsible": true,
+      "defaultCollapsed": false
+    },
+    "optionsMenu": {
+      "position": "header",
+      "components": {
+        "search": true,
+        "themeSwitch": true
+      }
+    },
+    "footer": {
+      "style": "minimal",
+      "content": "© 2026 My Site",
+      "branding": false
+    }
+  },
+  "favicon": "/assets/favicon.svg",
+  "theme": {
+    "customCss": [
+    ],
+    "name": "default",
+    "appearance": "dark",
+    "codeHighlight": true,
+    "copyWidgets": {
+      "enabled": false
+    },
+    "template": "summer"
+  },
+  "minify": true,
+  "autoTitleFromH1": true,
+  "copyCode": true,
+  "pageNavigation": true,
+  "navigation": [],
+  "plugins": {
+    "git": {
+      "repo": "https://github.com/alexhelms/my-site",
+      "branch": "main",
+      "editLink": true,
+      "lastUpdated": true,
+      "commitHistory": false
+    },
+    "seo": {
+      "defaultDescription": "My Site documentation."
+    },
+    "search": {
+      "semantic": true
+    }
+  }
 }

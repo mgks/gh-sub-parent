@@ -8,6 +8,32 @@
     "preview": "npx serve site"
   },
   "dependencies": {
-    "@docmd/core": "^0.8.15"
+    "@docmd/api": "file:local-tars/docmd-api-0.8.16.tgz",
+    "@docmd/core": "file:local-tars/docmd-core-0.8.16.tgz",
+    "@docmd/deployer": "file:local-tars/docmd-deployer-0.8.16.tgz",
+    "@docmd/engine-js": "^0.8.15",
+    "@docmd/live": "file:local-tars/docmd-live-0.8.16.tgz",
+    "@docmd/parser": "file:local-tars/docmd-parser-0.8.16.tgz",
+    "@docmd/plugin-analytics": "file:local-tars/docmd-plugin-analytics-0.8.16.tgz",
+    "@docmd/plugin-git": "file:local-tars/docmd-plugin-git-0.8.16.tgz",
+    "@docmd/plugin-installer": "file:local-tars/docmd-plugin-installer-0.8.16.tgz",
+    "@docmd/plugin-llms": "file:local-tars/docmd-plugin-llms-0.8.16.tgz",
+    "@docmd/plugin-math": "file:local-tars/docmd-plugin-math-0.8.16.tgz",
+    "@docmd/plugin-mermaid": "file:local-tars/docmd-plugin-mermaid-0.8.16.tgz",
+    "@docmd/plugin-okf": "file:local-tars/docmd-plugin-okf-0.8.16.tgz",
+    "@docmd/plugin-openapi": "file:local-tars/docmd-plugin-openapi-0.8.16.tgz",
+    "@docmd/plugin-pwa": "file:local-tars/docmd-plugin-pwa-0.8.16.tgz",
+    "@docmd/plugin-search": "file:local-tars/docmd-plugin-search-0.8.16.tgz",
+    "@docmd/plugin-seo": "file:local-tars/docmd-plugin-seo-0.8.16.tgz",
+    "@docmd/plugin-sitemap": "file:local-tars/docmd-plugin-sitemap-0.8.16.tgz",
+    "@docmd/plugin-threads": "file:local-tars/docmd-plugin-threads-0.8.16.tgz",
+    "@docmd/template-summer": "^0.8.15",
+    "@docmd/themes": "file:local-tars/docmd-themes-0.8.16.tgz",
+    "@docmd/tui": "file:local-tars/docmd-tui-0.8.16.tgz",
+    "@docmd/ui": "file:local-tars/docmd-ui-0.8.16.tgz",
+    "@docmd/utils": "file:local-tars/docmd-utils-0.8.16.tgz",
+    "@huggingface/transformers": "^4.2.0",
+    "docmd-search": "^0.1.1",
+    "onnxruntime-node": "^1.27.0"
   }
 }
