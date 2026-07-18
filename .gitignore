@@ -1,6 +1,5 @@
 node_modules/
 site/
-local-tars/
 package-lock.json
 _docmd-search/
 .docmd/

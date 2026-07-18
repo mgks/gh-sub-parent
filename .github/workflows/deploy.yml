@@ -22,6 +22,11 @@ jobs:
         uses: actions/checkout@v4
 
       # ── Build fresh tarballs from the docmd monorepo ─────────────────────
+      # This is the core of the beta-test pipeline: rather than publishing to
+      # npm and installing from there, we pack the monorepo at its current
+      # state (whatever is on main, pre-release) and install from those tars.
+      # This means a manual workflow_dispatch here = a full staging deploy of
+      # whatever docmd looks like right now, with zero extra steps needed.
       - name: Checkout docmd monorepo
         uses: actions/checkout@v4
         with:
@@ -49,21 +54,38 @@ jobs:
         run: pnpm -r run build
         working-directory: _docmd-source
 
-      - name: Pack tarballs (versionless)
+      - name: Pack tarballs
         run: node tools/sim.mjs --regen-tars --skip-monorepo-build
         working-directory: _docmd-source
 
-      # ── Set up beta-test site ─────────────────────────────────────────────
-      - name: Sync tarballs into beta-test
-        run: node sync-tars.mjs --source _docmd-source/_playground/local-tars
-
+      # ── Install & build the beta-test site ───────────────────────────────
       - name: Setup Node.js for site build
         uses: actions/setup-node@v4
         with:
           node-version: "24"
-          cache: "npm"
+          # No cache — package.json has no @docmd/* deps so cache is unhelpful here
 
-      # Cache semantic search embedding models (~270MB) across runs
+      # Install semantic search peer deps from npm (docmd-search, onnxruntime, transformers)
+      - name: Install npm dependencies
+        run: npm install --no-audit --no-fund
+
+      # Install all @docmd/* packages directly from the freshly packed tarballs.
+      # This overlays the real packages into node_modules without touching package.json.
+      - name: Install docmd packages from tarballs
+        run: |
+          node -e "
+          const { execSync } = require('child_process');
+          const fs = require('fs');
+          const tarDir = './_docmd-source/_playground/local-tars';
+          const tars = fs.readdirSync(tarDir)
+            .filter(f => f.endsWith('.tgz'))
+            .map(f => 'file:' + tarDir + '/' + f);
+          if (!tars.length) { console.error('No tarballs found in ' + tarDir); process.exit(1); }
+          console.log('Installing', tars.length, 'tarballs...');
+          execSync('npm install --no-save ' + tars.join(' '), { stdio: 'inherit' });
+          "
+
+      # Cache semantic search embedding models (~270MB) to avoid re-downloading
       - name: Cache embedding models
         uses: actions/cache@v4
         with:
@@ -71,12 +93,6 @@ jobs:
           key: docmd-search-models-${{ runner.os }}-${{ hashFiles('docmd.config.json') }}
           restore-keys: |
             docmd-search-models-${{ runner.os }}-
-
-      - name: Install beta-test dependencies
-        run: npm install --no-audit --no-fund
-        env:
-          # Allow postinstall scripts for native binaries (onnxruntime, rust engine)
-          npm_config_ignore_scripts: "false"
 
       - name: Build site
         run: npm run build
