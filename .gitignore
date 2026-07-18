@@ -1,4 +1,7 @@
-/site
-/node_modules
-docs/.docmd-search/
-/node_modules
+node_modules/
+site/
+local-tars/
+package-lock.json
+_docmd-search/
+.docmd/
+.DS_Store

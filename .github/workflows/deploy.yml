@@ -1,19 +1,15 @@
-name: Deploy to GitHub Pages
+name: Build & Deploy Beta Test Site
 
 on:
-  # Trigger on push to main branch
   push:
-    branches: [ "main" ]
-  # Allow manual trigger from Actions tab
+    branches: ["main"]
   workflow_dispatch:
 
-# Sets permissions of the GITHUB_TOKEN to allow deployment to GitHub Pages
 permissions:
   contents: read
   pages: write
   id-token: write
 
-# Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
 concurrency:
   group: "pages"
   cancel-in-progress: false
@@ -22,25 +18,76 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout beta-test
         uses: actions/checkout@v4
+
+      # ── Build fresh tarballs from the docmd monorepo ─────────────────────
+      - name: Checkout docmd monorepo
+        uses: actions/checkout@v4
+        with:
+          repository: docmd-io/docmd
+          ref: main
+          path: _docmd-source
+
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: latest
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: "22"
-          cache: 'npm'
+          node-version: "24"
+          cache: "pnpm"
+          cache-dependency-path: _docmd-source/pnpm-lock.yaml
 
-      - name: Install dependencies
-        run: npm install
+      - name: Install monorepo dependencies
+        run: pnpm install --frozen-lockfile
+        working-directory: _docmd-source
 
-      - name: Build website
+      - name: Build monorepo packages
+        run: pnpm -r run build
+        working-directory: _docmd-source
+
+      - name: Pack tarballs (versionless)
+        run: node tools/sim.mjs --regen-tars --skip-monorepo-build
+        working-directory: _docmd-source
+
+      # ── Set up beta-test site ─────────────────────────────────────────────
+      - name: Sync tarballs into beta-test
+        run: node sync-tars.mjs --source _docmd-source/_playground/local-tars
+
+      - name: Setup Node.js for site build
+        uses: actions/setup-node@v4
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      # Cache semantic search embedding models (~270MB) across runs
+      - name: Cache embedding models
+        uses: actions/cache@v4
+        with:
+          path: ~/.cache/docmd-search/models
+          key: docmd-search-models-${{ runner.os }}-${{ hashFiles('docmd.config.json') }}
+          restore-keys: |
+            docmd-search-models-${{ runner.os }}-
+
+      - name: Install beta-test dependencies
+        run: npm install --no-audit --no-fund
+        env:
+          # Allow postinstall scripts for native binaries (onnxruntime, rust engine)
+          npm_config_ignore_scripts: "false"
+
+      - name: Build site
         run: npm run build
+        env:
+          NODE_OPTIONS: "--max-old-space-size=4096"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: ./site
+          include-hidden-files: true
 
   deploy:
     environment:
