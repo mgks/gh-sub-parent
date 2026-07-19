@@ -8,6 +8,8 @@
     "dev": "docmd dev",
     "preview": "npx serve site"
   },
+  "dependencies": {
+  },
   "allowScripts": {
     "@docmd/engine-rust": true,
     "@docmd/engine-rust-binaries": true,

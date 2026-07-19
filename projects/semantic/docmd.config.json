@@ -21,6 +21,24 @@
   "autoTitleFromH1": true,
   "copyCode": true,
   "pageNavigation": true,
+  "navigation": [
+    { "title": "Semantic Home", "path": "/" },
+    { "title": "Configuration", "path": "/configuration/" },
+    {
+      "title": "Semantic Nested",
+      "children": [
+        { "title": "Deployment", "path": "/deployment/" },
+        { "title": "Theming", "path": "/theming/" },
+        {
+          "title": "Subnested Category",
+          "children": [
+            { "title": "Semantic Page A", "path": "/nested/page-a/" },
+            { "title": "Semantic Page B", "path": "/nested/subnested/page-b/" }
+          ]
+        }
+      ]
+    }
+  ],
   "plugins": {
     "seo": { "defaultDescription": "Semantic search project — validates auto-install of docmd-search, onnxruntime-node, and @huggingface/transformers on a fresh deploy." },
     "search": {

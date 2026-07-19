@@ -26,6 +26,24 @@
   "autoTitleFromH1": true,
   "copyCode": true,
   "pageNavigation": true,
+  "navigation": [
+    { "title": "Home", "path": "/" },
+    { "title": "Containers", "path": "/containers/" },
+    {
+      "title": "Nested Category",
+      "children": [
+        { "title": "Math Rendering", "path": "/math/" },
+        { "title": "Mermaid Diagrams", "path": "/mermaid/" },
+        {
+          "title": "Subnested Category",
+          "children": [
+            { "title": "Nested Page A", "path": "/nested/page-a/" },
+            { "title": "Nested Page B", "path": "/nested/subnested/page-b/" }
+          ]
+        }
+      ]
+    }
+  ],
   "plugins": {
     "math": true,
     "mermaid": true,
